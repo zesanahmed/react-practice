@@ -1,8 +1,13 @@
 import { ChangeEvent, useReducer } from "react";
 
+type TAction = {
+  type: string;
+  payload: string;
+};
+
 const initialState = { name: "", email: "" };
 
-const reducer = (currentState, action) => {
+const reducer = (currentState: typeof initialState, action: TAction) => {
   switch (action.type) {
     case "addName":
       return { ...currentState, name: action.payload };
@@ -24,14 +29,14 @@ const UseReducerExample = () => {
     <form onSubmit={handleSubmit}>
       <input
         onChange={(e) => dispatch({ type: "addName", payload: e.target.value })}
-        className="border-2 border-b-purple-700"
+        className="border-2 border-b-purple-700 rounded-md p-2 mb-4"
         type="text"
         name="name"
         id="name"
         placeholder="Enter Name"
       />
       <input
-        className="border-2 border-b-purple-700 "
+        className="border-2 border-b-purple-700 rounded-md p-2 mb-4"
         onChange={(e) =>
           dispatch({ type: "addEmail", payload: e.target.value })
         }
