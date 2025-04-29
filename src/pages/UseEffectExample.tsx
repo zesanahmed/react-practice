@@ -11,7 +11,7 @@ const UseEffectExample = () => {
       >
         {hidden ? "Show" : "Hide"}
       </button>
-      <div>{!hidden && <Counter />}</div>
+      <div>{!hidden && <Todo />}</div>
     </div>
   );
 };
@@ -29,6 +29,21 @@ const Counter = () => {
     };
   }, []);
   return <h1 className="border border-red-500 p-10 m-10">{count}</h1>;
+};
+
+const Todo = () => {
+  const controller = new AbortController();
+  const signal = controller.signal;
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/todos/1", { signal })
+      .then((res) => res.json())
+      .then((data) => alert(data.title));
+
+    return () => {
+      controller.abort();
+    };
+  }, []);
+  return <div className="border border-red-500 p-10">Todo</div>;
 };
 
 export default UseEffectExample;
