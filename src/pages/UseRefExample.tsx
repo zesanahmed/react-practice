@@ -1,20 +1,22 @@
-import React, { useRef, useState } from "react";
+import { useEffect, useRef } from "react";
+import CustomInput from "../components/CustomInput";
 
 const UseRefExample = () => {
-  const [count, setCount] = useState(0);
-  const myRef = useRef(0);
+  const myRef = useRef<HTMLInputElement | null>(null);
 
-  const increment = () => {
-    myRef.current = myRef.current + 1;
-    setCount(count + 1);
-    console.log(myRef.current, count);
-  };
+  useEffect(() => {
+    myRef.current?.focus();
+  }, []);
+
   return (
     <div>
       <h1>UseRef</h1>
-      <button onClick={() => increment()} className="btn btn-info">
-        {myRef.current}
-      </button>
+      <form>
+        <CustomInput ref={myRef} className="border border-green-500" />
+        <button type="submit" className="btn btn-success">
+          Submit
+        </button>
+      </form>
     </div>
   );
 };
