@@ -1,19 +1,18 @@
-import { useState } from "react";
-import UseStateExample from "./pages/UseStateExample";
-import HandleMultipleStates from "./pages/HandleMultipleStates";
-import UseReducerExample from "./pages/UseReducerExample";
-import UseEffectExample from "./pages/UseEffectExample";
-import UseRefExample from "./pages/UseRefExample";
+import { useContext } from "react";
+import { ThemeContext } from "./context/ThemeProvider";
 
 const App = () => {
-  const [counter, setCounter] = useState(0);
+  const { dark, setDark } = useContext(ThemeContext);
+  console.log(dark);
   return (
-    <div>
-      <UseStateExample counter={counter} setCounter={setCounter} />
-      <HandleMultipleStates />
-      <UseReducerExample />
-      <UseEffectExample />
-      <UseRefExample />
+    <div
+      className={`h-screen w-screen flex items-center justify-center ${
+        dark ? "bg-black" : "bg-white"
+      }`}
+    >
+      <button className="btn btn-primary" onClick={() => setDark(!dark)}>
+        Toggle
+      </button>
     </div>
   );
 };
