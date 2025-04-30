@@ -1,5 +1,5 @@
 import React, { createContext, Dispatch, ReactNode, useState } from "react";
-type TThemeContext = {
+export type TThemeContext = {
   dark: boolean;
   setDark: Dispatch<React.SetStateAction<boolean>>;
 };
