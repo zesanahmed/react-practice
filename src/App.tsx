@@ -1,8 +1,6 @@
 import { useContext } from "react";
 import { ThemeContext, TThemeContext } from "./context/ThemeProvider";
-import { MenuItem, MenuList } from "./components/Menu";
-import Profile from "./pages/hooksPages/Profile";
-import GameResult from "./pages/hooksPages/GameResult";
+import UsersContainer from "./components/UsersContainer";
 
 const App = () => {
   const { dark, setDark } = useContext(ThemeContext) as TThemeContext;
@@ -16,8 +14,7 @@ const App = () => {
       <button className="btn btn-primary" onClick={() => setDark(!dark)}>
         Toggle
       </button>
-      <Profile />
-      <GameResult />
+      <UsersContainer />
     </div>
   );
 };
